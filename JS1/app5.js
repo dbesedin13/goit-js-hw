@@ -1,55 +1,49 @@
 // Task 5
-let message;
-const china = "КИТАЙ";
-const chili = "ЧИЛИ";
-const australia = "АВСТРАЛИЯ";
-const india = "ИНДИЯ";
-const jamayka = "ЯМАЙКА";
-const chinaPrice = 100;
-const chiliPrice = 250;
-const australiaPrice = 170;
-const indiaPrice = 80;
-const jamaykaPrice = 120;
+const PRINT_COUNTRY =
+  'Напишите название страны в которую нужно доставить товар';
+const CANCEL_BY_USER = 'Отменено пользователем!';
+const NOT_DELIVERY = 'В вашей стране доставка не доступна';
+const CNINA = 'Китай';
+const AUSTRALIA = 'Австралия';
+const INDIA = 'Индия';
+const JAMAICA = 'Ямайка';
+const SOUTH_AMERICA = 'Южная америка';
 
-let search = prompt("куда доставить???");
+let message = prompt(PRINT_COUNTRY);
+let priсe = 0;
+let countryName;
 
-if (search === null) {
-  search = "cancel";
+if (message === null) {
+  message = CANCEL_BY_USER;
+} else {
+  countryName = message[0].toUpperCase() + message.slice(1).toLowerCase();
+
+  switch (countryName) {
+    case CNINA:
+      priсe = 100;
+      break;
+
+    case SOUTH_AMERICA:
+      priсe = 250;
+      break;
+
+    case AUSTRALIA:
+      priсe = 170;
+      break;
+
+    case INDIA:
+      priсe = 80;
+      break;
+    case JAMAICA:
+      priсe = 120;
+      break;
+    default:
+      message = NOT_DELIVERY;
+  }
 }
 
-if (search === "") {
-  search = "empty";
+if (priсe > 0) {
+  const PRICE_DELIVERY = `Доставка в ${countryName} будет стоить ${priсe} кредитов`;
+  message = PRICE_DELIVERY;
 }
-
-switch (search.toLowerCase()) {
-  case china.toLowerCase():
-    alert(`Доставка в "${china}" будет стоить ${chinaPrice} кредитов`);
-    break;
-
-  case chili.toLowerCase():
-    alert(`Доставка в "${chili}" будет стоить ${chiliPrice} кредитов`);
-    break;
-
-  case australia.toLowerCase():
-    alert(`Доставка в "${australia}" будет стоить ${australiaPrice} кредитов`);
-    break;
-
-  case india.toLowerCase():
-    alert(`Доставка в "${india}" будет стоить ${indiaPrice} кредитов`);
-    break;
-
-  case jamayka.toLowerCase():
-    alert(`Доставка в "${jamayka}" будет стоить ${jamaykaPrice} кредитов`);
-    break;
-
-  case "cancel":
-    console.log("Отменено пользователем");
-    break;
-
-  case "empty":
-    console.log("Введено пустое поле");
-    break;
-
-  default:
-    alert(`В вашей стране "${search}" доставка не доступна`);
-}
+alert(message);
