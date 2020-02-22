@@ -1,25 +1,30 @@
 // TASK 2
 
-const inventory = {
-  items: ['Монорельса', 'Фильтр'],
-  add(itemName) {
-    console.log(`Adding ${itemName} to inventory`);
-    this.items.push(itemName);
-  },
+class User {
+  constructor({ name, age, followers }) {
+    this.name = name;
+    this.age = age;
+    this.followers = followers;
+  }
 
-  remove(itemName) {
-    console.log(`Removing ${itemName} from inventory`);
-    this.items = this.items.filter(item => item !== itemName);
-  },
-};
+  getInfo() {
+    console.log(
+      `User ${this.name} is ${this.age} years old and has ${this.followers} followers`,
+    );
+  }
+}
 
-const invokeInventoryAction = function(itemName, action) {
-  console.log(`Invoking action on ${itemName}`);
-  action(itemName);
-};
+const mango = new User({
+  name: 'Mango',
+  age: 2,
+  followers: 20,
+});
 
-invokeInventoryAction('Аптечка', inventory.add.bind(inventory));
-console.log(inventory.items);
-invokeInventoryAction('Фильтр', inventory.remove.bind(inventory));
+const poly = new User({
+  name: 'Poly',
+  age: 3,
+  followers: 17,
+});
 
-console.log(inventory.items);
+mango.getInfo(); // User Mango is 2 years old and has 20 followers
+poly.getInfo(); // User Poly is 3 years old and has 17 followers
